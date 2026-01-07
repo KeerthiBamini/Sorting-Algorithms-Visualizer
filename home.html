@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualizer - Interactive Learning Platform</title>
+
+    <style>
+        :root {
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151a38;
+            --bg-card: #1e2445;
+            --text-primary: #e4e7f5;
+            --text-secondary: #9ca3c7;
+            --accent-primary: #667eea;
+            --accent-secondary: #764ba2;
+            --border-color: #2d3561;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 3rem 1rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* CARD SECTION */
+        .visualizers-grid {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .visualizer-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 420px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .visualizer-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px var(--shadow);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .card-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-description {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-features li {
+            padding: 0.4rem 0;
+        }
+
+        .card-features li::before {
+            content: "✓ ";
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .card-button {
+            display: block;
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="header-content">
+        <div class="logo">🎯 Algorithm Visualizer</div>
+        <button class="theme-toggle" id="themeToggle">
+            <span id="themeIcon">🌙</span>
+            <span id="themeText">Dark Mode</span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <h1>Interactive Algorithm Learning Platform</h1>
+        <p>
+            Learn data structures and algorithms visually with step-by-step execution.
+            Designed for students and interview preparation.
+        </p>
+    </section>
+
+    <section class="visualizers-grid">
+        <div class="visualizer-card">
+            <div class="card-icon">📊</div>
+            <h2 class="card-title">Sorting Algorithms</h2>
+            <p class="card-description">
+                Visualize popular sorting algorithms with complete step control.
+            </p>
+
+            <ul class="card-features">
+                <li>Bubble, Selection, Insertion</li>
+                <li>Merge, Quick, Heap Sort</li>
+                <li>Counting & Radix Sort</li>
+                <li>Step-by-step navigation</li>
+                <li>Comparisons & swaps</li>
+            </ul>
+
+            <a href="sorting/index.html" class="card-button">Launch Visualizer →</a>
+        </div>
+    </section>
+
+<script>
+    const html = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeText = document.getElementById('themeText');
+
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', currentTheme);
+    updateTheme(currentTheme);
+
+    themeToggle.onclick = () => {
+        const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateTheme(newTheme);
+    };
+
+    function updateTheme(theme) {
+        themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        themeText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+    }
+</script>
+</body>
+</html>
