@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="../index.html">🎯 Algorithm Visualizer</a>
+                <span class="separator">/</span>
+                <span class="current">Sorting</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <span id="themeIcon">🌙</span>
+                <span id="themeText">Dark Mode</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <div class="control-group">
+                    <label for="algorithmSelect">Algorithm:</label>
+                    <select id="algorithmSelect">
+                        <option value="bubble">Bubble Sort</option>
+                        <option value="selection">Selection Sort</option>
+                        <option value="insertion">Insertion Sort</option>
+                        <option value="merge">Merge Sort</option>
+                        <option value="quick">Quick Sort</option>
+                        <option value="heap">Heap Sort</option>
+                        <option value="counting">Counting Sort</option>
+                        <option value="radix">Radix Sort</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="arraySize">Array Size: <span id="arraySizeValue">10</span></label>
+                    <input type="range" id="arraySize" min="5" max="50" value="10">
+                </div>
+
+                <div class="control-group">
+                    <label for="customArray">Custom Array (comma-separated):</label>
+                    <input type="text" id="customArray" placeholder="e.g., 5,2,8,1,9">
+                </div>
+
+                <div class="button-group">
+                    <button id="randomizeBtn" class="btn btn-secondary">Randomize</button>
+                    <button id="startBtn" class="btn btn-primary">Start</button>
+                    <button id="nextStepBtn" class="btn btn-success" disabled>Next Step</button>
+                    <button id="prevStepBtn" class="btn btn-warning" disabled>Previous Step</button>
+                    <button id="resetBtn" class="btn btn-danger">Reset</button>
+                </div>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="main-grid">
+                <!-- Visualization Area -->
+                <div class="visualization-area">
+                    <div class="stats-bar">
+                        <div class="stat-item">
+                            <span class="stat-label">Comparisons:</span>
+                            <span id="comparisons" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Swaps:</span>
+                            <span id="swaps" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Current Step:</span>
+                            <span id="currentStep" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Total Steps:</span>
+                            <span id="totalSteps" class="stat-value">0</span>
+                        </div>
+                    </div>
+
+                    <div id="arrayContainer" class="array-container"></div>
+
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-box default"></div>
+                            <span>Default</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-box comparing"></div>
+                            <span>Comparing</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-box swapping"></div>
+                            <span>Swapping</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-box sorted"></div>
+                            <span>Sorted</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Panel -->
+                <div class="info-panel">
+                    <!-- Complexity Info -->
+                    <div class="info-card">
+                        <h3>Complexity Analysis</h3>
+                        <div class="complexity-grid">
+                            <div class="complexity-item">
+                                <span class="complexity-label">Time (Best):</span>
+                                <span id="timeBest" class="complexity-value">-</span>
+                            </div>
+                            <div class="complexity-item">
+                                <span class="complexity-label">Time (Avg):</span>
+                                <span id="timeAvg" class="complexity-value">-</span>
+                            </div>
+                            <div class="complexity-item">
+                                <span class="complexity-label">Time (Worst):</span>
+                                <span id="timeWorst" class="complexity-value">-</span>
+                            </div>
+                            <div class="complexity-item">
+                                <span class="complexity-label">Space:</span>
+                                <span id="space" class="complexity-value">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pseudocode -->
+                    <div class="info-card">
+                        <h3>Pseudocode</h3>
+                        <pre id="pseudocode" class="pseudocode"></pre>
+                    </div>
+
+                    <!-- Step Explanation -->
+                    <div class="info-card">
+                        <h3>Current Step Explanation</h3>
+                        <div id="explanation" class="explanation">
+                            Select an algorithm and click "Start" to begin visualization.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
